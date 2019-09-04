@@ -834,12 +834,15 @@ Kubernetes, 中文意思是舵手或导航员，它是一个容器集群管理�
 
 
 
-## 课程资源
+## 整体部署
 
-Docker for Mac【系统：10.12以上】: https://download.docker.com/mac/stable/Docker.dmg
+- 前端部分
 
-Docker for Windows【系统：专业版及企业版】: https://download.docker.com/win/stable/Docker%20for%20Windows%20Installer.exe
+1. 将vue项目 run build
+2. 配置一个容器，使用nginx基础镜像
+3. 创建web容器 docker build -t web:1.0 . 
 
-Docker ToolBox for Mac【系统：10.10.3以上】: https://download.docker.com/mac/stable/DockerToolbox.pkg 
+- 服务器
 
-Docker ToolBox for Windows【系统：windows7以上】：https://download.docker.com/win/stable/DockerToolbox.exe
+1. 在 docker-koa 打包  docker build -t server:1.0 .
+2. 根目录 docker-compose up -d 运行, 此时会启动三个容器 docker ps 查看

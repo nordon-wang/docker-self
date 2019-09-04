@@ -1,14 +1,12 @@
 version: '3'
 services:
   web:
-    image: web:1.1
-    restart: always
+    image: web:1.0
     ports:
     - "8080:80"
 
   server:
-    image: server:1.1
-    restart: always
+    image: server:1.0
     ports:
     - "3000:3000"
     depends_on:
@@ -19,8 +17,6 @@ services:
   mongodb:
     image: mongo
     restart: always
-    ports:
-      - "27019:27017"
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: 123456
