@@ -1,4 +1,4 @@
-#   5-6 容器化运维操作
+#   容器化运维操作
 
 日趋复杂的运维开发环境，对虚拟服务器及应用服务的要求更加的多元化。我们需要更加容易扩展、性能优越、方便监控的管理服务，容器化应用、容器化运维应运而生。
 
@@ -487,7 +487,7 @@ Dockerfile示例：
 ```dockerfile
 FROM node:10
 
-LABEL maintainer=itheima@itcast.cn
+LABEL maintainer= nordonwang
 
 # 创建 app 目录
 WORKDIR /app
@@ -497,10 +497,12 @@ COPY ["package.json","*.lock","./"]
 
 # 打包 app 源码
 # 特别注意：要指定工作目录中的文件名
-COPY src ./src
+# COPY src ./src
 
 # 使用.dockerignore文件，上面两个COPY合并成一个
-# COPY . .
+COPY . .
+
+RUN ls -la /app
 
 # 使用Yarn安装 app 依赖
 # 如果你需要构建生产环境下的代码，请使用：
@@ -521,10 +523,11 @@ CMD [ "node", "src/index.js" ]
 docker build -t ${your_name}/${image_name}:${tag} .
 ```
 
-这里的`your_name`代表的是远程仓库中的用户名，或者仓库地址; `image_name`为镜像名称，`tag`是给镜像打的标签，用于版本控制。例如：
+这里的`your_name`代表的是远程仓库中的用户名，或者仓库地址; `image_name`为镜像名称，`tag`是给镜像打的标签，用于版本控制, `.`代表会去使用当前目录下的dockerfile进行构建。例如：
 
 ```shell
-docker build -t itheima/node-demo:1.0 .
+docker build -t nordonwang/koa:1.1 .    // 构建
+docker run -itd --name koa -p 4000:3000 nordonwang/koa:1.0  // 启动
 ```
 
 
@@ -532,7 +535,7 @@ docker build -t itheima/node-demo:1.0 .
 打包过程：
 
 ```bash
-$ docker build -t itheima/node-demo:1.0 .
+$ docker build -t nordonwang/koa:1.1 . 
 Sending build context to Docker daemon  17.92kB
 Step 1/8 : FROM node:10
  ---> 5a401340b79f
@@ -627,6 +630,8 @@ services:
 
 在此文件的当前目录下，使用`docker-compose up -d`来执行。
 
+docker-compose指定的文件启动 `docker-compose -f docker-self.yml up -d`
+
 生命周期管理：
 
 创建：`run`/`up`
@@ -670,6 +675,14 @@ services:
 2core
 
 2GB+2GB(swap) 
+
+- 修改配置文件
+
+使用 pwd 查看项目的路径 `/Users/nordon.wang/Desktop/study/docker-self`，将 `/srv/docker`替换
+
+password 需要设置统一的
+
+邮箱修改
 
 ```yaml
 version: '2'

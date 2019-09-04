@@ -1,0 +1,23 @@
+{
+  "name": "docker-self",
+  "version": "1.0.0",
+  "description": "日趋复杂的运维开发环境，对虚拟服务器及应用服务的要求更加的多元化。我们需要更加容易扩展、性能优越、方便监控的管理服务，容器化应用、容器化运维应运而生。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nordon-wang/docker-self.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nordon-wang/docker-self/issues"
+  },
+  "homepage": "https://github.com/nordon-wang/docker-self#readme",
+  "dependencies": {
+    "koa": "^2.8.1"
+  }
+}
